@@ -1,0 +1,4 @@
+tuition = 6000
+for i in range(0, 5):
+    tuition += ((tuition * 2) * 2/100) / 2
+    print("Next "+ str(i+1) + " years semester tuition = "+ str(tuition))
