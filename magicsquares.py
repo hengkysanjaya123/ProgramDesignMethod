@@ -1,4 +1,13 @@
-n = 3
+while True:
+    try:
+        n = int(input("Please input number of dimension (odd) : "))
+        if(n % 2 == 0):
+            print("Please input odd number")
+        else:
+            break
+    except ValueError:
+        print("Please input integer")
+
 x = 0
 y = int((n - 1) / 2)
 number = 2
