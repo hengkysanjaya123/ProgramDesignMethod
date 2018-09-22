@@ -3,28 +3,14 @@ x = 0
 y = int((n - 1) / 2)
 number = 2
 
-array = []
-
-for i in range(0, n):
-    array.append([])
-    for j in range(0, n):
-        array[i].append(0)
-
+array = [[0 for i in range(0,n)] for i in range(0, n)]
 array[x][y] = 1
 
 while number <= n * n:
-    a = x-1
-    b = y+1
+    a = (x-1+n) % n
+    b = (y+1) % n
 
-    # x = 0, y = 1
-    # a= -1, b = 2
-    if(a < 0):
-        a = x-1+n
-
-    if(b >= 3):
-        b = y+1-n
-
-    if(array[a][b] != 0):
+    if(array[a][b]):
         a = x+1
         b = y
 
@@ -34,10 +20,6 @@ while number <= n * n:
     array[x][y] = number
 
     number+=1
-
-# print result
-# for i in range(0, n):
-#     print(array[i])
 
 for a in array:
     print(a)
