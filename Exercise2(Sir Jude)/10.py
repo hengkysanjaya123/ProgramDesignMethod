@@ -1,4 +1,5 @@
-#10.	Write a function find_longest_word() that takes a list of words and returns the length of the longest one.
+#10.	Write a function find_longest_word() that takes a list of words
+# and returns the length of the longest one.
 
 #declare function
 def find_longest_word(listWord):
@@ -15,3 +16,10 @@ def find_longest_word(listWord):
 
 #calling
 print(find_longest_word(["test", "abc", ""]))
+
+
+#declare function2
+def find_longest_word2(listWord):
+    return len(max(listWord, key = len))
+
+print(find_longest_word2(["test", "abc", "abcdefg"]))

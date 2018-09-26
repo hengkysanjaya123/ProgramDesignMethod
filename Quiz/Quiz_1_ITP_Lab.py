@@ -12,7 +12,7 @@ def getNumberOfStuff(spacePosition):
         for i in refreDict["middle"].keys():
             total = total + int(refreDict["middle"].get(i))
         return total
-    elif(spacePosition == "bottom"):
+    elif(spacePosition ==  "bottom"):
         total = 0
         for i in refreDict["bottom"].keys():
             total = total + int(refreDict["bottom"].get(i))
@@ -57,6 +57,7 @@ while True:
                 available = bottomSpace
 
             numberOfStuff = getNumberOfStuff(spacePosition)
+
             available = available - numberOfStuff
 
             if(volume > available):
