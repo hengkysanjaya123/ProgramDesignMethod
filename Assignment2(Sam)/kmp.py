@@ -12,4 +12,16 @@ def kmp(stringValue):
     return result
 
 #calling
-print(kmp("Pasko-Patak"))
+print("-----------------------------------------------------")
+print("|    Welcome to KMP, type 'back' to back to home    |")
+print("-----------------------------------------------------")
+
+while True:
+    #ask user to input name
+    name = input("Please input name : ")
+    #check if the input is back then break
+    if(name == "back"):
+        break
+    #else print the result
+    else:
+        print(kmp(name))
