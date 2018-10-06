@@ -1,3 +1,12 @@
+"""
+selection sort
+
+loop from the list start from next of current i
+looking for the smallest then swap it with the current i position
+counter the shift and lock it
+"""
+
+
 list1 = [64, 25, 12, 22, 11]
 # list1 = ["d", "b", "a", "e", "f", "b" ]
 
