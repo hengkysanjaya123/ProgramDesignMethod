@@ -53,7 +53,6 @@ class Bank:
     def addCustomer(self, firstname, lastname):
         cust1 = Customer(firstname, lastname)
         self.__customer.append(cust1)
-
         self.__numberOfCustomer += 1
 
     def getNumOfCustomers(self):
