@@ -18,7 +18,7 @@ with open(filename) as f:
         if(steps != "NA"):
             date = row[1]
 
-            interval = row[2]
+            interval = int(row[2])
 
             dict.setdefault(str(date), [])
             dict[str(date)].append(int(steps))
@@ -74,14 +74,28 @@ with open(filename) as f:
     for i in dictInterval.keys():
         listAveragePerInterval.append(st.mean(dictInterval.get(i)))
 
-
-    fig = plt.figure(dpi=80, figsize=(70, 6))
-    plt.plot(dictInterval.keys(),listAveragePerInterval,  c = 'blue')
+    fig = plt.figure(dpi=80, figsize=(20, 6))
+    plt.plot(list(dictInterval.keys()),listAveragePerInterval,  c = 'blue')
     plt.title("Average daily activity")
     plt.xlabel("Time Interval")
     plt.ylabel("Average number of steps taken")
     fig.autofmt_xdate()
     plt.savefig("figure2.svg")
     plt.close()
+
+    # print(listAveragePerInterval)
+
+    maxValue = max(listAveragePerInterval)
+    n = 0
+    max = ""
+    indexMax = listAveragePerInterval.index(maxValue)
+
+    for i in dictInterval.keys():
+        if(n == indexMax):
+            max = i
+            break
+        n+=1
+
+    print("maximum number of steps in interval : " + str(max))
 
     # print("File saved to figure1-version1.svg and figure1-version2.svg")
