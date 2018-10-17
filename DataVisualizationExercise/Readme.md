@@ -6,8 +6,8 @@ For this part of the task, we ignore the missing values (NA) in the dataset.
 2. Make a histogram of the total number of steps taken each day
 3. Calculate and report the mean and median of the total number of steps taken per day
 
-<img src="figure1-1.svg" alt="first case result version 1">
-<img src="figure1-2.svg" alt="first case result version 2">
+<img src="figure1-version1.svg" alt="first case result version 1">
+<img src="figure1-version2.svg" alt="first case result version 2">
 
 
 
