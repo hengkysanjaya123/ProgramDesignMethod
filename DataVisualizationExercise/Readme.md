@@ -1,6 +1,6 @@
 ### To Do:
 ### Create a python script that would be able to display the information being asked for: 
-### What is mean total number of steps taken per day?
+### 1. What is mean total number of steps taken per day?
 For this part of the task, we ignore the missing values (NA) in the dataset.
 1. Calculate the total number of steps taken per day
 2. Make a histogram of the total number of steps taken each day
@@ -11,9 +11,17 @@ For this part of the task, we ignore the missing values (NA) in the dataset.
 
 
 
-### What is the average daily activity pattern?
+### 2. What is the average daily activity pattern?
 
 1. Make a time series plot of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 
 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 <img src="figure2.svg" alt="second case result">
+
+### 3. Inputting missing values
+1. Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
+2. Devise a strategy for filling in all of the missing values in the dataset
+3. Create a new dataset that is equal to the original dataset but with the missing data filled in.
+4. Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day
+
+<img src="figure3(inputting missing values).svg" alt="third case result">
