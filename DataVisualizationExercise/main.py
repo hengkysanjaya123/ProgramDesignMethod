@@ -11,6 +11,7 @@ with open(filename) as f:
 
 
     dict = {}
+    dictInterval = {}
     for row in reader:
         steps = row[0]
 
@@ -22,6 +23,9 @@ with open(filename) as f:
             dict.setdefault(str(date), [])
             dict[str(date)].append(int(steps))
 
+            dictInterval.setdefault(interval, [])
+            dictInterval[interval].append(int(steps))
+
 
     # print(len(dict.keys()))
 
@@ -31,24 +35,21 @@ with open(filename) as f:
 
     listDate = []
     listTotal  = []
+    listAvg = []
     # listMean = []
     # listMedian = []
     for i in dict.keys():
         listDate.append(i)
         listTotal.append(sum(dict.get(i)))
-
-    # print(listTotal)
-    print("Mean : " + str(st.mean(listTotal)))
-    listTotal.sort()
-    print("Median : " + str(st.median(listTotal)))
-    # print(listTotal)
+        listAvg.append(st.mean(dict.get(i)))
 
     plt.hist(listTotal)
     plt.title("Total Steps per day")
     plt.xlabel("Steps per day")
     plt.ylabel("Frequency")
     plt.yticks(range(0, 25, 5))
-    plt.savefig('first.svg')
+    plt.savefig('figure1-version1.svg')
+    plt.close()
     # plt.show()
 
 
@@ -58,6 +59,29 @@ with open(filename) as f:
     hist.y_title = "Frequency"
     hist.x_labels = listDate
     hist.add('Total Number of steps', listTotal)
-    hist.render_to_file('second.svg')
+    hist.render_to_file('figure1-version2.svg')
 
-    print("File saved to first.svg and second.svg")
+
+    print("Mean : " + str(st.mean(listTotal)))
+    q = sorted(listTotal)
+    print("Median : " + str(st.median(q)))
+
+    # ------------------------ second case ------------------------
+    # What is the average daily activity pattern?
+
+
+    listAveragePerInterval = []
+    for i in dictInterval.keys():
+        listAveragePerInterval.append(st.mean(dictInterval.get(i)))
+
+
+    fig = plt.figure(dpi=80, figsize=(70, 6))
+    plt.plot(dictInterval.keys(),listAveragePerInterval,  c = 'blue')
+    plt.title("Average daily activity")
+    plt.xlabel("Time Interval")
+    plt.ylabel("Average number of steps taken")
+    fig.autofmt_xdate()
+    plt.savefig("figure2.svg")
+    plt.close()
+
+    # print("File saved to figure1-version1.svg and figure1-version2.svg")
