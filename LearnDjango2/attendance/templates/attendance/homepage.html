@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title></title>
+</head>
+<link rel="stylesheet" type="text/css" href="{% static 'attendance/style.css'%}">
+<body>
+<header>
+	<div class="container">
+		<a href="/">
+            <div class="logo">
+                <img src="{% static 'attendance/images/logo.png' %}" alt="logo">
+            </div>
+        </a>
+        <ul class="menu">
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">HOW TO USE </a></li>
+            <li><a href="#">ABOUT US</a></li>
+            <!-- <li>
+                <select name="" id="">
+                    <option value="en">English</option>
+                    <option value="th">Thai</option>
+                </select>
+            </li> -->
+            <!-- <li>
+                <form action="/" class="rad">
+                    <input type="search" name="s" placeholder="Search Recipe...">
+                    <button class="fa fa-search"></button>
+                </form>
+            </li> -->
+        </ul>
+	</div>
+</header>
+
+<div id="banner">
+    <div class="background" style="background-image: url('{% static 'attendance/images/banner.jpg'%}')"></div>
+    <div class="word">
+        <h1>FACE RECOGNITION ATTENDANCE</h1>
+        <span class="rad">Inspirative & Delicious</span>
+        <button class="btn rad" id="scroll">READ MORE</button>
+    </div>
+</div>
+
+</body>
+</html>
