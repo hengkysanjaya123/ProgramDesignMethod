@@ -2,21 +2,23 @@ import csv
 import matplotlib.pyplot as plt
 import statistics as st
 import pygal
-
+import datetime as dt
 
 filename = 'activity.csv'
 with open(filename) as f:
     reader = csv.reader(f)
     header_row = next(reader)
 
-
     dict = {}
     dictInterval = {}
+    dictIntervalWeekEnd = {}
+    dictIntervalWeekDays = {}
     for row in reader:
         steps = row[0]
 
         if(steps != "NA"):
             date = row[1]
+            date2 = int(dt.datetime.strptime(date, '%Y-%m-%d').day)
 
             interval = int(row[2])
 
@@ -25,6 +27,13 @@ with open(filename) as f:
 
             dictInterval.setdefault(interval, [])
             dictInterval[interval].append(int(steps))
+
+            if(date2 % 7 == 0):
+                dictIntervalWeekEnd.setdefault(interval, [])
+                dictIntervalWeekEnd[interval].append(int(steps))
+            else:
+                dictIntervalWeekDays.setdefault(interval, [])
+                dictIntervalWeekDays[interval].append(int(steps))
 
 
     # print(len(dict.keys()))
@@ -95,3 +104,25 @@ with open(filename) as f:
     print("maximum number of steps in interval : " + str(max))
 
     # print("File saved to figure1-version1.svg and figure1-version2.svg")
+
+
+
+    listWeekDays = []
+    listWeekEnd = []
+    for i in dictIntervalWeekDays.keys():
+        listWeekDays.append(st.mean(dictIntervalWeekDays.get(i)))
+
+    for i in dictIntervalWeekEnd.keys():
+        listWeekEnd.append(st.mean(dictIntervalWeekEnd.get(i)))
+
+    fig = plt.figure(dpi=80, figsize=(20, 6))
+    plt.plot(list(dictInterval.keys()),listWeekDays,  c = 'blue' , label = 'WeekDays')
+    plt.plot(list(dictInterval.keys()),listWeekEnd,  c = 'red' , label = 'WeekEnd')
+    plt.legend(loc = 'upper left')
+    plt.title("All week days and weekend days")
+    plt.xlabel("Time Interval")
+    plt.ylabel("Average number of steps taken")
+    fig.autofmt_xdate()
+    plt.savefig("figure4.svg")
+    plt.close()
+
