@@ -25,3 +25,10 @@ For this part of the task, we ignore the missing values (NA) in the dataset.
 4. Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day
 
 <img src="figure3(inputting missing values).svg" alt="third case result">
+
+### 4. Are there differences in activity patterns between weekdays and weekends?
+1. Create a new factor variable in the dataset with two levels - "weekday" and "weekend" indicating whether a given date is a weekday or weekend day.
+2. Make a plot containing a time series plot of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekdays or weekend days (y-axis).
+
+<img src="figure4.svg" alt="fourth case result">
+
