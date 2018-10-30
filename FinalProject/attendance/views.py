@@ -28,6 +28,7 @@ def doattendance(request):
         obj = CoreAttendanceData(data[0], data[1], data[2])
         listData.append(obj)
 
+    listData.sort(key = lambda x:x.login,reverse = True)
     # data = AttendanceData.objects.all()
 
     context = {
@@ -48,3 +49,5 @@ def submit(request):
     return render(request, 'attendance/response.html')
 
 
+def response(request):
+    return render(request, 'attendance/response.html')
