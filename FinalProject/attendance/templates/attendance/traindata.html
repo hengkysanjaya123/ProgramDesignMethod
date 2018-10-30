@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title>Train Data</title>
+</head>
+<link rel="stylesheet" type="text/css" href="{% static 'attendance/bootstrap-4.0.0-dist/css/bootstrap.css' %}">
+<style type="text/css">
+	@font-face{
+		font-family: AutourOne;
+		src : url('{% static 'attendance/font/AutourOne-Regular.otf' %}') format('opentype');
+	}
+
+	.custom-font{
+		font-family: 'AutourOne';
+	}
+
+	.header{
+		width: 100%;
+		background: #EA944D;		
+		color : white;
+		padding-top : 15px;
+		padding-bottom: 15px;
+		margin-bottom: 30px;
+	}
+
+	.table tr td input{
+		width: 100%;
+	}
+</style>
+<body>
+
+<div class="header custom-font">
+	<div class="container">
+		<h1>Train your data</h1>
+	</div>	
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			
+			<h2 class="custom-font">New Data</h2>
+			<form action="submit" method="POST">
+				{% csrf_token %}
+				<!--<input type="text" name="binusianid" id="binusianid">-->
+				<!--<input type="text" name="name" id="name">-->
+				<!--<input type="submit" value="submit" class="btn btn-primary">-->
+
+				<table class="table">
+					<tr>
+						<td>Binusian ID </td>
+						<td>:</td>
+						<td><input type="text" name="binusianid" id="binusianid"></td>
+					</tr>
+					<tr>
+						<td>Name</td>
+						<td>:</td>
+						<td><input type="text" name="name" id="name"></td>
+					</tr>
+
+					<tr>
+						<td colspan="3">
+							<input type="submit" value="submit" class="btn btn-primary">
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
