@@ -41,9 +41,9 @@
 				{% block content %}
 					{% for i in data %}
 						<tr>
-							<td>{{ i.getBinusianID }}</td>
-							<td>{{ i.getName }}</td>
-							<td>{{ i.getLogin }}</td>
+							<td>{{ i.getStudentID.binusianID }}</td>
+							<td>{{ i.getStudentID.name }}</td>
+							<td>{{ i.getLoginTime }}</td>
 						</tr>
 					{% endfor %}
 				{% endblock %}

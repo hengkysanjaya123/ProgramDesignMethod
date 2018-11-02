@@ -701,7 +701,7 @@
 <body>
 <header>
 	<div class="container">
-		<a href="">
+		<a href="{% url 'home'%}">
 			<div class="logo">				
 				<img src="{% static 'attendance/image/logo.png' %}" alt="logo">
 			</div>
@@ -780,7 +780,7 @@
                         <div class="description">
                             TRAIN YOUR DATA
                         </div>
-                        <button><a href="{% url 'traindata' %}">START</a></button>
+                        <a href="{% url 'traindata' %}"><button>START</button></a>
                     </div>
                 </div>
             </div>
@@ -795,7 +795,7 @@
                         <div class="description">
                             DO ATTENDANCE
                         </div>
-                        <button><a href="{% url 'doattendance' %}">START</a></button>
+                        <a href="{% url 'doattendance' %}"><button>START</button></a>
                         <!-- <a href="#">
                             <div class="title">
                                 START

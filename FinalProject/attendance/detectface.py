@@ -38,8 +38,8 @@ def detect(id,name):
 			cv2.putText(frame, "Please put your face in camera", (50,250), font, 1.0, (255,255,255), 1)
 		# if face founded
 		else:
-			# every time mod 20 is zero then increment value and save the frame to image
-			if time % 20 == 0:
+			# every time mod 45 is zero then increment value and save the frame to image
+			if time % 45 == 0:
 				# save the frame to image file
 				newPath = 'attendance/dataset/'+ id + '-' + name
 				if not os.path.exists(newPath):
@@ -61,7 +61,6 @@ def detect(id,name):
 
 		#Display the resulting frame
 		cv2.imshow('frame', frame)
-
 
 		#waiting for the 'q' keys
 		if cv2.waitKey(1) & 0xFF == ord('q'):

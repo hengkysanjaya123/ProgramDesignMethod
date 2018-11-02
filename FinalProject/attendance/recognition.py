@@ -8,7 +8,8 @@ def writeData(data):
     data = data.split('-')
 
     f = open('temporarydata.txt', 'a')
-    f.write(str(data[0]) +"#" + data[1] + "#" + str(datetime.datetime.now()) + "\n")
+    now = datetime.datetime.now()
+    f.write(str(data[0]) +"#" + data[1] + "#" + str(now.date())+ "#" + str(now.time()) + "\n")
     f.close()
 
 
