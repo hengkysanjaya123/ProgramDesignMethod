@@ -9,7 +9,7 @@ def writeData(data):
 
     f = open('temporarydata.txt', 'a')
     now = datetime.datetime.now()
-    f.write(str(data[0]) +"#" + data[1] + "#" + str(now.date())+ "#" + str(now.time()) + "\n")
+    f.write("\n"+str(data[0]) +"#" + data[1] + "#" + str(now.date())+ "#" + str(now.strftime("%H:%M:%S")))
     f.close()
 
 
@@ -18,18 +18,25 @@ def main():
     # Create arrays of known face encodings and their names
     dictKnownFace = {}
 
+    listKnownFace = []
+    listNameKnownFace = []
+
     listOfFiles = os.listdir("dataset")
     for l in listOfFiles:
         listImage = os.listdir("dataset\\" + str(l))
 
         dictKnownFace.setdefault(l,[])
+        listNameKnownFace.append(l)
 
         for j in listImage:
             person_image = face_recognition.load_image_file("dataset\\" + str(l) + "\\"+j)
-            person_face_encoding = face_recognition.face_encodings(person_image)[0]
+            face_locations = face_recognition.face_locations(person_image)
+            person_face_encoding = face_recognition.face_encodings(person_image, face_locations)[0]
 
             dictKnownFace[l].append(person_face_encoding)
+            listKnownFace.append(person_face_encoding)
 
+    # print(dictKnownFace)
 
     # Initialize some variables
     face_locations = []
@@ -57,40 +64,47 @@ def main():
 
             face_names = []
             for face_encoding in face_encodings:
+                # print(face_encoding)
                 # See if the face is a match for the known face(s)
-                for faceName in dictKnownFace.keys():
-                    matches = face_recognition.compare_faces(dictKnownFace.get(faceName), face_encoding)
+                # for faceName in dictKnownFace.keys():
+                matches = face_recognition.compare_faces(listKnownFace, face_encoding, tolerance=0.50)
 
-                    name = "Unknown"
+                name = "Unknown"
 
-                    # If a match was found in known_face_encodings, just use the first one.
-                    if True in matches:
-                        # first_match_index = matches.index(True)
-                        name = str(faceName)
-                        # face_names.append(name)
-                        writeData(name)
-                        break
-                        # print("Detect : " + faceName + "  Name : " + name)
+                print(matches)
+
+                # If a match was found in known_face_encodings, just use the first one.
+                if True in matches:
+                    first_match_index = matches.index(True)
+                    # name = str(faceName)
+
+                    name = listNameKnownFace[first_match_index]
+                    writeData(name)
+                    # break
+                    # print("Detect : " + faceName + "  Name : " + name)
 
                     print(name)
+                    face_names.append(name)
+                    break
 
-        # process_this_frame = not process_this_frame
-        # # Display the results
+        process_this_frame = not process_this_frame
+
+        # Display the results
         # for (top, right, bottom, left), name in zip(face_locations, face_names):
         #     # Scale back up face locations since the frame we detected in was scaled to 1/4 size
         #     top *= 4
         #     right *= 4
         #     bottom *= 4
         #     left *= 4
-
+        #
         #     # Draw a box around the face
         #     cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
-
+        #
         #     # Draw a label with a name below the face
         #     cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
         #     font = cv2.FONT_HERSHEY_DUPLEX
         #     cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
-
+        #
         # # Display the resulting image
         # cv2.imshow('Video', frame)
 

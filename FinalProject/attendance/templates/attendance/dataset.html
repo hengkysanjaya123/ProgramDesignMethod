@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title>Do Attendance</title>
+</head>
+<script>
+	setTimeout(function(){
+	   window.location.reload(1);
+	}, 5000);
+</script>
+<link rel="stylesheet" type="text/css" href="{% static 'attendance/bootstrap-4.0.0-dist/css/bootstrap.css' %}">
+<style type="text/css">
+	.header{
+		margin-top: 25px;
+		margin-bottom: 25px;
+		width: 100%;
+		height: 50px;
+		/*background: #D968C5;*/
+		text-align: center;
+		/*color : white;*/
+	}
+
+	
+</style>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="header">
+				<h1>Dataset</h1>
+			</div>
+
+
+			{% block content %}
+				{% for i in data %}
+					<div class="image col-md-12">
+                        <img src="{% static '../dataset/attendance/dataset/2201852492-Hengky Sanjaya/1.jpg' %}" alt="image">
+                    </div>
+
+
+					<tr>
+						<td>{{ i.getStudentID.binusianID }}</td>
+						<td>{{ i.getStudentID.name }}</td>
+						<td>{{ i.getLoginTime }}</td>
+					</tr>
+				{% endfor %}
+			{% endblock %}
+
+
+
+		</div>
+	</div>
+</div>
+</body>
+</html>

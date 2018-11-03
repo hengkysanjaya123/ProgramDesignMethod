@@ -29,36 +29,42 @@ def doattendance(request):
     listData = []
 
     for i in f:
+        if(i == ""):
+            continue
+
         data = i.split('#')
         id = data[0]
-        name = data[1]
+        # name = data[1]
         date = data[2]
-        time = data[3]
+        time = data[3].replace('\n','')
+
+        dateObj = dt.datetime.strptime(date+ ' ' + time, '%Y-%m-%d %H:%M:%S')
 
         student = Student.objects.get(binusianID=id)
 
-        #
         q = ClassSchedule.objects.filter(studentID = student).filter(date = now.date())
-
+        # print(q.count())
         if(q.count() != 0):
-            q = q.first()
-            print(q.getStartTime())
-            print(q.getEndTime())
-            print(now.time())
-            print("-------------")
-            if(q.getStartTime() <= now.time() and q.getEndTime() >= now.time()):
-                check = AttendanceData.objects.filter(classScheduleID = q)
-                if(check.count() == 0):
-                    obj = AttendanceData.objects.create(studentID = student, classScheduleID = q, loginDate = date, loginTime = time)
-                    listData.append(obj)
-                else:
-                    listData.append(check[0])
+            for i in q:
+                if(dateObj >= dt.datetime.combine(i.getDate(),i.getStartTime()) and dateObj <= dt.datetime.combine(i.getDate(),i.getEndTime())):
+
+                    check = AttendanceData.objects.filter(classScheduleID = i)
+                    # print("Check : " + str(check))
+                    # print("Data : ")
+                    # print(data)
+                    # print("------------")
+                    if(check.count() == 0):
+                        obj = AttendanceData.objects.create(studentID = student, classScheduleID = i, loginDate = date, loginTime = time)
+                        listData.append(obj)
+                    else:
+                        if(check[0] not in listData):
+                            listData.append(check[0])
         else:
             print("cannot do attendant")
 
         # obj = CoreAttendanceData(data[0], data[1], data[2])
 
-    listData.sort(key = lambda x:x.loginDate,reverse = True)
+    # listData.sort(key = lambda x:x.loginDate,reverse = True)
     # data = AttendanceData.objects.all()
 
     context = {
@@ -84,3 +90,14 @@ def submit(request):
 
 def response(request):
     return render(request, 'attendance/response.html')
+
+
+def dataset(request):
+
+    obj = Student.objects.all()
+
+    context = {
+        'data' : obj
+    }
+
+    return render(request, 'attendance/dataset.html', context)
