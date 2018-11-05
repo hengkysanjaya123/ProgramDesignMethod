@@ -1,3 +1,5 @@
+import msvcrt
+
 import cv2
 import sys
 import os
@@ -16,7 +18,7 @@ def detect(id,name):
 	# declare value to determine the time and number of pictures
 	n = 1
 	time = 1
-	while n <= 5:
+	while True:
 		# Capture frame-by-frame
 		ret, frame = cap.read()
 
@@ -38,25 +40,31 @@ def detect(id,name):
 			cv2.putText(frame, "Please put your face in camera", (50,250), font, 1.0, (255,255,255), 1)
 		# if face founded
 		else:
-			# every time mod 45 is zero then increment value and save the frame to image
-			if time % 45 == 0:
+			cv2.putText(frame, "Press space to take a picture", (50, 50), font, 1.0, (255, 255, 255), 1)
+			# Draw a rectangle around the faces
+			for (x, y, w, h) in faces:
+				cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+
+			if cv2.waitKey(1) & 0xFF == ord('p'):
+				# # every time mod 45 is zero then increment value and save the frame to image
+				# if time % 45 == 0:
 				# save the frame to image file
 				newPath = 'attendance/dataset/'+ id + '-' + name
 				if not os.path.exists(newPath):
 					os.makedirs(newPath)
 
+				ret, frame = cap.read()
 				cv2.imwrite(newPath + '/' + str(n) + ".jpg", frame)
-				n += 1
 
-			# Draw a rectangle around the faces
-			for (x, y, w, h) in faces:
-				cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+				cv2.putText(frame, "Picture saved", (50, 250), font, 1.0, (255, 255, 255), 1)
+				break
+				# n += 1
 
-			# draw text to give how many number of picture will be taken
-			cv2.putText(frame, "Taking "+ str(5 - n) + " picture left", (50,50), font, 1.0, (255,255,255), 1)
+				# # draw text to give how many number of picture will be taken
+				# cv2.putText(frame, "Taking "+ str(5 - n) + " picture left", (50,50), font, 1.0, (255,255,255), 1)
 
-			# increase the time value
-			time += 1
+				# increase the time value
+				# time += 1
 
 
 		#Display the resulting frame

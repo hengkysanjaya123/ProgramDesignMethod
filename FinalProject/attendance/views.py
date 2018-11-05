@@ -18,6 +18,8 @@ def traindata(request):
 
 
 def doattendance(request):
+
+    #read recognition file
     url = 'attendance/temporarydata.txt'
 
     f = open(url, 'r')
@@ -28,6 +30,7 @@ def doattendance(request):
 
     listData = []
 
+    #loop per row
     for i in f:
         if(i == ""):
             continue
@@ -40,8 +43,10 @@ def doattendance(request):
 
         dateObj = dt.datetime.strptime(date+ ' ' + time, '%Y-%m-%d %H:%M:%S')
 
+        # get current schedule data
         student = Student.objects.get(binusianID=id)
 
+        #check if today the current recognized student has a class schedule or not
         q = ClassSchedule.objects.filter(studentID = student).filter(date = now.date())
         # print(q.count())
         if(q.count() != 0):
