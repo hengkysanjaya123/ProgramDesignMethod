@@ -117,3 +117,6 @@ def main():
     cv2.destroyAllWindows()
 
 main()
+
+
+# From : https://github.com/ageitgey/face_recognition
