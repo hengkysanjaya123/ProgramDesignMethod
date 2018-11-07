@@ -40,7 +40,7 @@ def detect(id,name):
 			cv2.putText(frame, "Please put your face in camera", (50,250), font, 1.0, (255,255,255), 1)
 		# if face founded
 		else:
-			cv2.putText(frame, "Press space to take a picture", (50, 50), font, 1.0, (255, 255, 255), 1)
+			cv2.putText(frame, "Press p to take a picture", (50, 50), font, 1.0, (255, 255, 255), 1)
 			# Draw a rectangle around the faces
 			for (x, y, w, h) in faces:
 				cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)

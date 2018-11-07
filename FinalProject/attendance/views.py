@@ -25,8 +25,6 @@ def doattendance(request):
     f = open(url, 'r')
 
     now = dt.datetime.now()
-    # print(now.date())
-    # print(now.time())
 
     listData = []
 
