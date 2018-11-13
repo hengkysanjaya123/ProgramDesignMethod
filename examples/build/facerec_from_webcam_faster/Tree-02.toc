@@ -1,0 +1,5 @@
+('c:\\users\\itss-wsc\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pillow-5.3.0-py3.7-win32.egg',
+ None,
+ {'EGG-INFO', '*.pyw', '*.pyd', '*.pyc', '*.cp37-win32.pyd', '*.py'},
+ 'DATA',
+ [])
