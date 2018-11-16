@@ -4,11 +4,7 @@
 <head>
 	<title>Do Attendance</title>
 </head>
-<script>
-	<!--setTimeout(function(){-->
-	   <!--window.location.reload(1);-->
-	<!--}, 5000);-->
-</script>
+
 <link rel="stylesheet" type="text/css" href="{% static 'attendance/bootstrap-4.0.0-dist/css/bootstrap.css' %}">
 <style type="text/css">
 
@@ -30,7 +26,7 @@
 		margin: 5px;
 		border: 1px solid #ccc;
 		float: left;
-		width: 270px;
+		width: 250px;
 		background: white;
 	}
 
@@ -58,7 +54,7 @@
 				<h1>Dataset</h1>
 			</div>
 
-			<div class="listimage col-md-12 row">
+			<div class="col-md-12 row">
 				{% block content %}
 					{% for i in data %}
 

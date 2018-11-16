@@ -1,3 +1,4 @@
+import cv2
 from django.shortcuts import render
 from .models import *
 # from django.contrib.staticfiles.templatetags.staticfiles import static
@@ -81,6 +82,7 @@ def submit(request):
     name = request.POST['name']
 
     response = detect(binusianId, name)
+
 
     # insert new student data to database
     Student.objects.create(name=name, binusianID = binusianId)

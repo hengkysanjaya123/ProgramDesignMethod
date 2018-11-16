@@ -9,6 +9,7 @@ def detect(id,name):
 	# initialize
 	cap = cv2.VideoCapture(0)
 
+
 	cv2.startWindowThread()
 
 	# Create the haar cascade
@@ -18,7 +19,9 @@ def detect(id,name):
 	# declare value to determine the time and number of pictures
 	n = 1
 	time = 1
-	while True:
+
+	takePicture = True
+	while takePicture:
 		# Capture frame-by-frame
 		ret, frame = cap.read()
 
@@ -57,7 +60,8 @@ def detect(id,name):
 				cv2.imwrite(newPath + '/' + str(n) + ".jpg", frame)
 
 				cv2.putText(frame, "Picture saved", (50, 250), font, 1.0, (255, 255, 255), 1)
-				break
+
+				takePicture = False
 				# n += 1
 
 				# # draw text to give how many number of picture will be taken
@@ -78,7 +82,6 @@ def detect(id,name):
 	cap.release()
 	cv2.destroyWindow('frame')
 	cv2.destroyAllWindows()
-
 
 	return "Success"
 

@@ -7,5 +7,5 @@ urlpatterns = [
     path('doattendance', views.doattendance, name='doattendance'),
     path('submit', views.submit),
     path('response', views.response),
-    path('dataset', views.dataset)
+    path('dataset', views.dataset,name='dataset')
 ]
