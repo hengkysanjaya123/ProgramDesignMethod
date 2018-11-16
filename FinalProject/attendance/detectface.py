@@ -49,7 +49,7 @@ def detect(id,name):
 				# # every time mod 45 is zero then increment value and save the frame to image
 				# if time % 45 == 0:
 				# save the frame to image file
-				newPath = 'attendance/dataset/'+ id + '-' + name
+				newPath = 'attendance/static/attendance/dataset/'+ id + '-' + name
 				if not os.path.exists(newPath):
 					os.makedirs(newPath)
 

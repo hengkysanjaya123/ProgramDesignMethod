@@ -5,9 +5,9 @@
 	<title>Do Attendance</title>
 </head>
 <script>
-	setTimeout(function(){
-	   window.location.reload(1);
-	}, 5000);
+	<!--setTimeout(function(){-->
+	   <!--window.location.reload(1);-->
+	<!--}, 5000);-->
 </script>
 <link rel="stylesheet" type="text/css" href="{% static 'attendance/bootstrap-4.0.0-dist/css/bootstrap.css' %}">
 <style type="text/css">
@@ -21,6 +21,27 @@
 		/*color : white;*/
 	}
 
+	div.gallery {
+		margin: 5px;
+		border: 1px solid #ccc;
+		float: left;
+		width: 270px;
+	}
+
+	div.gallery:hover {
+		border: 1px solid #777;
+	}
+
+	div.gallery img {
+		width: 100%;
+		height: auto;
+	}
+
+	div.desc {
+		padding: 15px;
+		text-align: center;
+	}
+
 	
 </style>
 <body>
@@ -31,22 +52,25 @@
 				<h1>Dataset</h1>
 			</div>
 
+			<div class="listimage col-md-12 row">
+				{% block content %}
+					{% for i in data %}
 
-			{% block content %}
-				{% for i in data %}
-					<div class="image col-md-12">
-                        <img src="{% static '../dataset/attendance/dataset/2201852492-Hengky Sanjaya/1.jpg' %}" alt="image">
-                    </div>
+						<div class="gallery">
+							{% with '/attendance/dataset/'|add:i.getBinusianID|add:'-'|add:i.getName|add:'\1.jpg' as image %}
+								<img src="{% static image %}"/>
+							{% endwith %}
 
+							<div class="desc">
+								<b>{{i.getBinusianID}}</b>
+								<br>
+								{{i.getName}}
+							</div>
+						</div>
 
-					<tr>
-						<td>{{ i.getStudentID.binusianID }}</td>
-						<td>{{ i.getStudentID.name }}</td>
-						<td>{{ i.getLoginTime }}</td>
-					</tr>
-				{% endfor %}
-			{% endblock %}
-
+					{% endfor %}
+				{% endblock %}
+			</div>
 
 
 		</div>

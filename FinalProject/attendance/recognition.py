@@ -21,22 +21,20 @@ def main():
     listKnownFace = []
     listNameKnownFace = []
 
-    listOfFiles = os.listdir("dataset")
+    listOfFiles = os.listdir("static\\attendance\\dataset")
     for l in listOfFiles:
-        listImage = os.listdir("dataset\\" + str(l))
+        listImage = os.listdir("static\\attendance\\dataset\\" + str(l))
 
         dictKnownFace.setdefault(l,[])
         listNameKnownFace.append(l)
 
         for j in listImage:
-            person_image = face_recognition.load_image_file("dataset\\" + str(l) + "\\"+j)
+            person_image = face_recognition.load_image_file("static\\attendance\\dataset\\" + str(l) + "\\"+j)
             face_locations = face_recognition.face_locations(person_image)
             person_face_encoding = face_recognition.face_encodings(person_image, face_locations)[0]
 
             dictKnownFace[l].append(person_face_encoding)
             listKnownFace.append(person_face_encoding)
-
-    # print(dictKnownFace)
 
     # Initialize some variables
     face_locations = []

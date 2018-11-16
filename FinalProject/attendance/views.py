@@ -30,7 +30,7 @@ def doattendance(request):
 
     #loop per row
     for i in f:
-        if(i == ""):
+        if "" in i:
             continue
 
         data = i.split('#')
@@ -74,7 +74,6 @@ def doattendance(request):
         'title' : 'hello',
         'data' : listData
     }
-
     return render(request, 'attendance/doattendance.html', context)
 
 def submit(request):
@@ -98,6 +97,7 @@ def response(request):
 def dataset(request):
 
     obj = Student.objects.all()
+
 
     context = {
         'data' : obj
